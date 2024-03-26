@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: socialapp-deployment
+  labels:
+    app: socialapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: socialapp
+  template:
+    metadata:
+      labels:
+       app.kubernetes.io/name: socialapp
+    spec:
+      containers:
+      - name: socialapp
+        image: nokonkwo/myapp
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATA_MICROSERVICE
+          valueFrom:
+            configMapKeyRef:
+              name: socialapp-config
+              key: DATA_MICROSERVICE
