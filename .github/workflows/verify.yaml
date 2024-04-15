@@ -32,7 +32,7 @@ jobs:
       run: docker build . -t my-restful-service
       
     - name: Run the container
-      run: docker run -d -p 8123:8123 my-restful-service
+      run: docker run -d -p 8080:8080 my-restful-service
       
     - name: Test the RESTful service
       run: |
@@ -40,12 +40,13 @@ jobs:
         sleep 5
         
         # Send a GET request to the service
-        response=$(curl http://localhost:8123)
+        response=$(curl http://localhost:8080/social-app/fib?length=3)
+
+        if [ "$response" == '[0, 1, 1]' ]; then
+      echo "Test passed!"
+    else
+      echo "Test failed. Expected '[0, 1, 1]', got '$response'"
         
-        # Check that the response is "Hello world."
-        if [ "$response" == "Hello world!" ]; then
-          echo "Test passed!"
-        else
-          echo "Test failed. Expected 'Hello world.', got '$response'"
+
           exit 1
         fi
