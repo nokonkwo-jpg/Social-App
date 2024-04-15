@@ -21,7 +21,7 @@ jobs:
         java-version: '21'
 
 
-        
+
     - name: Build JAR with Gradle
       run: ./gradlew build
     
@@ -37,7 +37,7 @@ jobs:
         sleep 5
         
         # Send a GET request to the service
-        response=$(curl http://localhost:8080/social-app/fib?length=3)
+        response=$(curl http://localhost:8080/Social-App/fib?length=3)
 
         if [ "$response" == '[0, 1, 1]' ]; then
           echo "Test passed!"
