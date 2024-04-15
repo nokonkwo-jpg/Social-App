@@ -1,9 +1,3 @@
-- name: Setup Java
-  uses: actions/setup-java@v2
-  with:
-    distribution: 'temurin'
-    java-version: '21'
-
 name: Build and Test RESTful Service
 
 on:
@@ -13,11 +7,18 @@ on:
     branches: [ "main" ]
 
 jobs:
+
   build-and-test:
     runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v2
+
+    - name: Setup Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'temurin'
+        java-version: '21'
     
     - name: Build the container image
       run: docker build . -t my-restful-service
