@@ -43,10 +43,10 @@ jobs:
         response=$(curl http://localhost:8080/social-app/fib?length=3)
 
         if [ "$response" == '[0, 1, 1]' ]; then
-      echo "Test passed!"
-    else
-      echo "Test failed. Expected '[0, 1, 1]', got '$response'"
-        
+          echo "Test passed!"
+        else
+          echo "Test failed. Expected '[0, 1, 1]', got '$response'"
 
+          
           exit 1
         fi
