@@ -1,3 +1,9 @@
+- name: Setup Java
+  uses: actions/setup-java@v2
+  with:
+    distribution: 'temurin'
+    java-version: '21'
+
 name: Build and Test RESTful Service
 
 on:
@@ -7,7 +13,6 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build-and-test:
     runs-on: ubuntu-latest
     
